@@ -1,8 +1,8 @@
 /*
  ============================================================================
- Name        : Robot.ino
+ Name        : SumoBot.ino
  Author      : Rafi Khan
- Version     : 1.0
+ Version     : 1.1
  Copyright   : Copyright 2015 Rafi Khan
  Description : Arduino sketch for sumo bot
  ============================================================================
@@ -78,27 +78,40 @@ bool checkLineSensor(){
 	}
 	else{
 		return true;
-	}
+}
 
 }
 
 void scan(){
 	int left = checkPingSensor(leftSonar);
 	int right = checkPingSensor(rightSonar);
+	bool neg = false;
+	
+	int num = left - right; // -3
+	if(num <0){
+	neg = true;
+	num = num * -1;
+	}
+    float val = atan2(num, 2) * 57.30; // Verify accuracy 
+	float aval = 90 - val;
 
-	if (right == left)
-	simpleMove(2000, 2000, 0);
-	else if (right < left)
-	simpleMove(1600, 2000, 0);
-	else if (left < right)
-	simpleMove(2000, 1600, 0);	
+	if(neg){
+		int numl = (val/90) * 500 + 1500 ;
+		int numbr = (aval/90) * 500 + 1500;
+		simpleMove(numb, numbr, 0);
+	}	
+	else{
+		int numl = (val/90)	* 500 + 1500;
+		int numbr = (aval/90) * 500 + 1500;
+		simpleMove(numb, numbr, 0);
+	}
 }
 
 // Returns true if there is something in front of us within 'limit' cm
 int checkPingSensor(NewPing sonar){
 	delay(50);
 	unsigned int uS = sonar.ping() / US_ROUNDTRIP_CM;
-	
+
 	return uS;
 }
 
