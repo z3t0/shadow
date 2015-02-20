@@ -86,7 +86,7 @@ void scan(){
 	int left = checkPingSensor(leftSonar);
 	int right = checkPingSensor(rightSonar);
 	bool neg = false;
-	
+		
 	int num = left - right; // -3
 	if(num < 0){
 	neg = true;
@@ -111,7 +111,6 @@ void scan(){
 int checkPingSensor(NewPing sonar){
 	delay(50);
 	unsigned int uS = sonar.ping() / US_ROUNDTRIP_CM;
-
 	return uS;
 }
 
