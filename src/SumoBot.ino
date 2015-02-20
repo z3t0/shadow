@@ -88,22 +88,22 @@ void scan(){
 	bool neg = false;
 	
 	int num = left - right; // -3
-	if(num <0){
+	if(num < 0){
 	neg = true;
 	num = num * -1;
 	}
+
     float val = atan2(num, 2) * 57.30; // Verify accuracy 
-	float aval = 90 - val;
 
 	if(neg){
-		int numl = (val/90) * 500 + 1500 ;
-		int numbr = (aval/90) * 500 + 1500;
-		simpleMove(numb, numbr, 0);
+		int mval = (val/90) * 500 + 1500 ; // Left
+		int amval = (90 - val/90) * 500 + 1500; // Right
+		simpleMove(mval, amval, 0);
 	}	
 	else{
-		int numl = (val/90)	* 500 + 1500;
-		int numbr = (aval/90) * 500 + 1500;
-		simpleMove(numb, numbr, 0);
+		int mval = (val/90)	* 500 + 1500;
+		int amval = (90 - val/90) * 500 + 1500;
+		simpleMove(amval, mval, 0);
 	}
 }
 
