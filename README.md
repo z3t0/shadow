@@ -1,10 +1,12 @@
 #SumoDuino#
 
-![enter image description here](http://www.fingertechrobotics.com/prodimages/kits/Rhino_top.png)
+![SumoDuino](http://www.fingertechrobotics.com/prodimages/kits/Rhino_top.png)
 
 ### What is this repository for? ###
 **Project Name: SumoDuino**
+
 **Project Summary: This repository holds the Sumo Duino source files, including code and PCB.**
+
 **Version: 1.1**
  
 ### How do I get set up? ###
