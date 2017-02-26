@@ -6,6 +6,8 @@
 // offset = radius + tolerance 
 // offset = 1.75 + 0.25 = 2.00
 
+// TODO: embedded axle
+
 $fn=100;
 
 width = 5;
