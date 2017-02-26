@@ -4,19 +4,24 @@
 #include "sumobot.h"
 
 int main() {
+    init();
 
-    while(1) {  
-
-        #if RELEASE
-        // Startup Delay of 5000ms : this number needs to be modified
-        _delay_ms(5000);
-        #endif
-
+    while(1) {
         loop();
-
     }
 }
 
-void loop() {
+void init() {
+    #if RELEASE
+    // Startup Delay of 5000ms : this number needs to be modified
+        _delay_ms(5000);
+    #endif
     
+    #if DEBUG
+        debug_led_prepare();
+    #endif
+}
+
+void loop() {
+
 }
