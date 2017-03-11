@@ -1,0 +1,3 @@
+[submodule "pcb/library"]
+	path = pcb/library
+	url = https://github.com/freetronics/freetronics_kicad_library.git
