@@ -10,7 +10,7 @@ build:
 
 flash: build
 	avr-objcopy -O ihex -R .eeprom sumobot sumobot.hex
-	avrdude -F -V -c arduino -p ATMEGA328P -P /dev/tty.usbmodem1411 -b 115200 -U flash:w:sumobot.hex
+	avrdude -F -V -c arduino -p ATMEGA328P -P /dev/tty.usbmodem1421 -b 115200 -U flash:w:sumobot.hex
 
 
 clean:
