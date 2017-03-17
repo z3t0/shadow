@@ -14,28 +14,42 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+
+// Bit twiddling
+// Set a bit
+// BYTE |= (1 << i)
+
+// Clear a bit
+// BYTE &= ~(1 << i);
+
+// Toggle a bit
+// BYTE ^= (1 << i)
+
 // Forward declaration
 void init();
 void loop();
 
 // Config
+
+// DEBUG_LED
 #define DEBUG_LED_PIN PB5 // D13
-#define DEBUG_LED_PORT DDRB
+#define DEBUG_LED_DDRB DDRB
+#define DEBUG_LED_PORT PORTB
 
 // Debugging
 void debug_led(int state) {
-    if (state) {
+    if (state == 1) {
         // ON
         DEBUG_LED_PORT |= _BV(DEBUG_LED_PIN);
     }
-    else {
+    else if (state == 0) {
         // OFF
-        DEBUG_LED_PORT &= ~ _BV(DEBUG_LED_PIN);
+        DEBUG_LED_PORT &= ~_BV(DEBUG_LED_PIN);
     }
 }
 
 void debug_led_prepare() {
-    DEBUG_LED_PORT |= (1 << PB5);
+    DEBUG_LED_DDRB |= (1 << PB5);   // OUTPUT
     debug_led(0);
 }
 
