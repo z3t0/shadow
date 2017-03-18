@@ -29,28 +29,99 @@
 void init();
 void loop();
 
+// Set Motors
+void setLeftMotor(int pwm);
+void setRightMotor(int pwm);
+
+void readIRSensor(int pint);
+
 // Config
 
 // DEBUG_LED
-#define DEBUG_LED_PIN PB5 // D13
-#define DEBUG_LED_DDRB DDRB
-#define DEBUG_LED_PORT PORTB
+#define DEBUG_LED_R_INT PD1 // D0
+#define DEBUG_LED_R_DDR DDRD
+#define DEBUG_LED_R_PORT PORTD
+
+#define DEBUG_LED_G_INT PD2
+#define DEBUG_LED_G_DDR DDRD
+#define DEBUG_LED_G_PORT PORTD
+
+#define DEBUG_LED_B_INT PD3
+#define DEBUG_LED_B_DDR DDRD
+#define DEBUG_LED_B_PORT PORTD
+
+// IR Sensors
+#define IR_LEFT_INT PD4
+#define IR_LEFT_PIN PIND
+#define IR_LEFT_DDR DDRD
+#define IR_LEFT_PORT PORTD
+
+#define IR_RIGHT_INT PD5
+#define IR_RIGHT_PIN PIND
+#define IR_RIGHT_DDR DDRD
+#define IR_RIGHT_PORT PORTD
+
+// Sensors
+
+// Object Sensors
+
+void prepare_IR_sensors() {
+    IR_LEFT_DDR &= ~_BV(IR_LEFT_INT);
+    IR_RIGHT_DDR &= ~_BV(IR_RIGHT_INT);
+}
+
+struct ir_sensor {
+    char left;
+    char right;
+};
+
+// returns 1 for detected
+struct ir_sensor read_IR_sensors() {
+    struct ir_sensor data;
+
+    data.left = !(IR_LEFT_PIN & _BV(IR_LEFT_INT));
+    data.right = !(IR_RIGHT_PIN & _BV(IR_RIGHT_INT));
+
+    return data;
+}
 
 // Debugging
-void debug_led(int state) {
-    if (state == 1) {
-        // ON
-        DEBUG_LED_PORT |= _BV(DEBUG_LED_PIN);
+// Change debug led
+void debug_led(int r, int g, int b) {
+    if (!r) { // ON : RED
+        DEBUG_LED_R_PORT |= _BV(DEBUG_LED_R_INT);
     }
-    else if (state == 0) {
-        // OFF
-        DEBUG_LED_PORT &= ~_BV(DEBUG_LED_PIN);
+
+    else { // OFF: RED
+        DEBUG_LED_R_PORT &= ~_BV(DEBUG_LED_R_INT);
+    }
+
+    if (!g) { // ON : GREEN
+        DEBUG_LED_G_PORT |= _BV(DEBUG_LED_G_INT);
+    }
+
+    else { // OFF: GREEN
+        DEBUG_LED_G_PORT &= ~_BV(DEBUG_LED_G_INT);
+    }
+
+    if (!b) { // ON : BLUE
+        DEBUG_LED_B_PORT |= _BV(DEBUG_LED_B_INT);
+    }
+
+    else { // OFF: BLUE
+        DEBUG_LED_B_PORT &= ~_BV(DEBUG_LED_B_INT);
     }
 }
 
-void debug_led_prepare() {
-    DEBUG_LED_DDRB |= (1 << PB5);   // OUTPUT
-    debug_led(0);
+// Sets up debug LED
+void prepare_debug_led() {
+    // Set Output
+    DEBUG_LED_R_DDR |= _BV(DEBUG_LED_R_INT);
+    DEBUG_LED_G_DDR |= _BV(DEBUG_LED_G_INT);
+    DEBUG_LED_B_DDR |= _BV(DEBUG_LED_B_INT);
+
+    // Start with Red LED
+    debug_led(1, 0, 0);
 }
 
 #endif

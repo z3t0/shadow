@@ -18,10 +18,12 @@ void init() {
     #endif
     
     #if DEBUG
-        debug_led_prepare();
+        prepare_debug_led();
     #endif
+
+    prepare_IR_sensors();
 }
 
 void loop() {
-
+    
 }
