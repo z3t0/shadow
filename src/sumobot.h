@@ -64,6 +64,7 @@ void readIRSensor(int pint);
 
 // Ping Sensor
 #define PING_INT PB0
+#define PING_ECHO PD6
 #define PING_PIN PINB
 #define PING_DDR DDRB
 #define PING_PORT PORTB

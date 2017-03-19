@@ -3,18 +3,15 @@
 
 #include "sumobot.h"
 #include <avr/interrupt.h>
-
 volatile uint16_t start = 0;
 volatile uint16_t end = 0;
 volatile uint16_t overflow = 0;
 volatile uint16_t edge = 0;
 
 void pulse() {
-	PING_DDR |= _BV(PING_INT);
-	PING_PORT |= _BV(PING_INT);
-	_delay_us(5);
-	PING_PORT &= ~_BV(PING_INT);
-	PING_DDR &= ~_BV(PING_INT); _delay_us(2);
+	PORTD |= _BV(PD6);
+	_delay_us(10);
+	PORTD &= ~_BV(PD6);
 }
 
 void init_timer1() {
@@ -34,7 +31,9 @@ int main() {
 
 	init();
 
-	/* pulse(); */
+	DDRB&= ~_BV(PB0);
+	DDRD |= _BV(PD6);
+	pulse();
 
 
 	while(1) {
@@ -68,13 +67,13 @@ void loop() {
 		utoa(start, c2, 10);
 		utoa(end, c3, 10);
 
-		uint16_t t = (end + (overflow * 65535) - start) / (float)65535 * .265 * 1000;
+		uint16_t t = (end + (overflow * 65535) - start) / (float)65535 * .265 * 1000000 / 58;
 
 
 		char buffer[10];
 		utoa(t, buffer, 10);
 
-		printString("time");
+		printString("distance");
 		printString(buffer);
 		printString("overflow");
 		printString(c1);
@@ -89,8 +88,8 @@ void loop() {
 		end = 0;
 		overflow = 0;
 
-		/* _delay_ms(1); */
-		/* pulse(); */
+		_delay_ms(1000);
+		pulse();
 	}
 }
 
