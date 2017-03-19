@@ -2,39 +2,15 @@
 // Copyright (c) 2017 Rafi Khan
 
 #include "sumobot.h"
-#include <avr/interrupt.h>
-volatile uint16_t start = 0;
-volatile uint16_t end = 0;
-volatile uint16_t overflow = 0;
-volatile uint16_t edge = 0;
 
-void pulse() {
-	PORTD |= _BV(PD6);
-	_delay_us(10);
-	PORTD &= ~_BV(PD6);
-}
-
-void init_timer1() {
-	TCCR1B |= ((1 << CS11) | (1 << CS10)); //64 prescaler
-	TIMSK1 |= _BV(ICIE1) |_BV(TOIE1); // Enable overflow and edge interrupt
-	TCCR1B |= _BV(ICES1); // interrupt on rising edge
-}
-
-void stop_timer() {
-	TCCR1B &= ~((1 << CS11) | (1 << CS10)); //64 prescaler
-}
 
 int main() {
-	init_timer1();
+
+    prepare_ping();
 
 	sei();
 
 	init();
-
-	DDRB&= ~_BV(PB0);
-	DDRD |= _BV(PD6);
-	pulse();
-
 
 	while(1) {
 		loop();
@@ -58,61 +34,14 @@ void init() {
 }
 
 void loop() {
-	if (edge == 3) {
-		char c1[10];
-		char c2[10];
-		char c3[10];
+    if (success) {
 
-		utoa(overflow, c1, 10);
-		utoa(start, c2, 10);
-		utoa(end, c3, 10);
+    char c[10];
+    utoa(ref, c, 10);
+    printString(c);
+    success = 0; 
+    end = 0;
+    start = 0;
+    }
 
-		uint16_t t = (end + (overflow * 65535) - start) / (float)65535 * .265 * 1000000 / 58;
-
-
-		char buffer[10];
-		utoa(t, buffer, 10);
-
-		printString("distance");
-		printString(buffer);
-		printString("overflow");
-		printString(c1);
-		printString("start");
-		printString(c2);
-		printString("end");
-		printString(c3);
-
-		TCCR1B |= _BV(ICES1); // interrupt on rising edge
-		edge = 0;
-		start = 0;
-		end = 0;
-		overflow = 0;
-
-		_delay_ms(1000);
-		pulse();
-	}
-}
-
-ISR(TIMER1_CAPT_vect) {
-	// Read 16 bit val
-	uint16_t val = ICR1L;
-	val |= ICR1H << 8;
-
-	if (edge == 0) {
-		start = val;
-		edge = 1;
-		overflow = 0;
-
-		TCCR1B &= ~_BV(ICES1); // falling edge
-	}
-
-	else if (edge == 1){
-		end = val;
-		edge = 3;
-	}
-
-}
-
-ISR(TIMER1_OVF_vect){
-	overflow++;
 }

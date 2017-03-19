@@ -13,6 +13,9 @@
 // Includes
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
+
+// Libraries
 #include "USART.h"
 
 
@@ -62,12 +65,6 @@ void readIRSensor(int pint);
 #define IR_RIGHT_DDR DDRD
 #define IR_RIGHT_PORT PORTD
 
-// Ping Sensor
-#define PING_INT PB0
-#define PING_ECHO PD6
-#define PING_PIN PINB
-#define PING_DDR DDRB
-#define PING_PORT PORTB
 
 // Sensors
 
@@ -93,20 +90,130 @@ struct ir_sensor read_IR_sensors() {
     return data;
 }
 
+/******************************
+ * Ping Sensor
+******************************/
 // Ping Sensor
+#define PING_TRIG PB0
+#define PING_ECHO PD6
+#define PING_PIN PINB
+#define PING_DDR DDRB
+#define PING_PORT PORTB
 
+#define PING_MAX_CM 100
+
+// volatile uint16_t start = 0;	// Starting tick
+// volatile uint16_t end = 0; // End tick
+// volatile uint16_t overflow = 0; // * 65535 (16bit)
+// volatile uint16_t edge = 0; // 0 = rising, 1 = falling, 2 =done
+// volatile uint16_t last = 0; // latest distance in cm
+
+
+// /// Timer 1 Edge interrupt:
+// //	Saves rising and falling edge
+// ISR(TIMER1_CAPT_vect) {
+// 	// Read 16 bit val from ICR
+// 	uint16_t val = ICR1L;
+// 	val |= ICR1H << 8;
+
+// 	if (edge == 0) { // Rising edge detected
+// 		start = val;
+// 		edge = 1;
+// 		overflow = 0;
+
+// 		TCCR1B &= ~_BV(ICES1); // Now look for falling edge
+// 	}
+
+// 	else if (edge == 1){ // Falling edge detected
+// 		end = val;
+
+// 		// convert to cm
+// 		uint16_t temp  = ((end + (overflow * 65535) - start) / (float)65535 * .265 * 1000000 / 58);
+// 		if (temp > PING_MAX_CM)
+// 			last = PING_MAX_CM;
+// 		else
+// 			last = temp;
+// 		edge = 3;	// Success
+// 	}
+// }
+
+// /// Overflow interrupt
+// //	increments counter
+// ISR(TIMER1_OVF_vect){
+// 	overflow++;
+// }
+
+volatile uint16_t ref;
+volatile uint16_t success = 0;
+volatile uint16_t overflow = 0;
+volatile uint16_t end = 0;
+
+void prepare_ping() {
+    // Sensor
+    DDRD |= _BV(PD7); //PD7 as output
+    PORTD &= ~_BV(PD7); //PD7 to LOW
+    DDRB &= ~_BV(PB0); //PB0 as input
+    PORTB &= ~_BV(PB0); //PB0 no pullup
+
+    // Timer
+    TCNT1 = 0; //Clear TIMER1 value
+    OCR1A = 159; //5us when TIMER1 is divided by 8
+    TIMSK1 = _BV(OCIE1A); //Enable compare match interrupt
+    TCCR1B = _BV(ICES1) | _BV(CS10); //Trigger input capture on rising edge, divide TIMER1 by 8 and start TIMER1
+
+}
+
+
+ISR(TIMER1_COMPA_vect)
+{
+    if(PORTD&(1<<PD7)) //Test if query pulse on
+    {
+        PORTD&=~(1<<PD7); //End query pulse
+        TIMSK1=(1<<ICIE1) | (1<<TOIE1); //Disable compare match interrupt and enable input capture interrupt
+    }
+    else //Query pulse not started
+    {
+        PORTD|=(1<<PD7); //Start query pulse
+    }
+    TCNT1=0; //Clear TIMER1 value
+}
+
+ISR(TIMER1_CAPT_vect)
+{
+    TCCR1B&=~(1<<CS10); //Stop TIMER1
+    if(PINB&(1<<PB0)) //Test if response pulse started
+    {
+        TCNT1 = 0;
+        overflow = 0;
+        TCCR1B&=~(1<<ICES1); //Next timer trigger on falling edge
+    }
+    else //Response pulse ended
+    {
+        end = TCNT1;
+        ref = ((end * (float) 0.0625) / 58 + (overflow * 70.62));
+        success = 1;
+        TIMSK1=(1<<OCIE1A); //Disable input capture interrupt and enable compare match interrupt
+        TCCR1B|=(1<<ICES1); //Next timer trigger on rising edge
+    }
+    TCNT1=0; //Clear TIMER1 value
+    TCCR1B|=(1<<CS10); //Start TIMER1
+}
+
+ISR(TIMER1_OVF_vect) {
+    overflow++;
+}
 
 void read_ping() {
     // Pulse to high or pulse to low?
 
     // Pulse out : 5us
-    PING_DDR |= _BV(PING_INT); // OUTPUT
-    PING_PORT |= _BV(PING_INT);
+    PING_DDR |= _BV(PING_TRIG); // OUTPUT
+    PING_PORT |= _BV(PING_TRIG);
 
     _delay_us(5);
 
     // Pulse in 
-    // PING_PORT &= ~_BV(PING_INT);
+    // PING_PORT &= ~_BV(PING_TRIG);
     // Read pulse width
 
     // Convert
@@ -154,5 +261,4 @@ void prepare_debug_led() {
     // Start with Red LED
     debug_led(1, 0, 0);
 }
-
 #endif
