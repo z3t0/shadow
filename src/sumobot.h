@@ -13,6 +13,7 @@
 // Includes
 #include <avr/io.h>
 #include <util/delay.h>
+#include "USART.h"
 
 
 // Bit twiddling
@@ -61,6 +62,12 @@ void readIRSensor(int pint);
 #define IR_RIGHT_DDR DDRD
 #define IR_RIGHT_PORT PORTD
 
+// Ping Sensor
+#define PING_INT PB0
+#define PING_PIN PINB
+#define PING_DDR DDRB
+#define PING_PORT PORTB
+
 // Sensors
 
 // Object Sensors
@@ -83,6 +90,25 @@ struct ir_sensor read_IR_sensors() {
     data.right = !(IR_RIGHT_PIN & _BV(IR_RIGHT_INT));
 
     return data;
+}
+
+// Ping Sensor
+
+
+void read_ping() {
+    // Pulse to high or pulse to low?
+
+    // Pulse out : 5us
+    PING_DDR |= _BV(PING_INT); // OUTPUT
+    PING_PORT |= _BV(PING_INT);
+
+    _delay_us(5);
+
+    // Pulse in 
+    // PING_PORT &= ~_BV(PING_INT);
+    // Read pulse width
+
+    // Convert
 }
 
 // Debugging
@@ -111,6 +137,10 @@ void debug_led(int r, int g, int b) {
     else { // OFF: BLUE
         DEBUG_LED_B_PORT &= ~_BV(DEBUG_LED_B_INT);
     }
+}
+
+void debug_led_toggle() {
+    DEBUG_LED_G_PORT ^= _BV(DEBUG_LED_B_INT);
 }
 
 // Sets up debug LED
