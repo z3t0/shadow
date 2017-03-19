@@ -36,12 +36,20 @@ void init() {
 void loop() {
     if (success) {
 
-    char c[10];
-    utoa(ref, c, 10);
-    printString(c);
-    success = 0; 
-    end = 0;
-    start = 0;
+        if (ref > 100) {
+            debug_led(0, 0, 1);
+        }
+
+        else {
+            debug_led(0, 1, 0);
+        }
+
+        // char c[10];
+        // utoa(ref, c, 10);
+        // printString(c);
+
+        success = 0; 
+        end = 0;
     }
 
 }
