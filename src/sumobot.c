@@ -3,15 +3,15 @@
 
 #include "sumobot.h"
 
-
+// On Start
 int main() {
-
-    prepare_ping();
-
-	sei();
-
+    
+    // Setup timers, motors, sensors etc.    
 	init();
+    // Enable interrupts
+    sei();
 
+    debug_led(0, 0, 0);
 	while(1) {
 		loop();
 	}
@@ -20,36 +20,23 @@ int main() {
 
 void init() {
 #if RELEASE
+    // TODO: Start up Timer
+    // need to figure out a way to have a 5 second "delay" including all the
+    // settup so tha no time is lost
 	// Startup Delay of 5000ms : this number needs to be modified
 	_delay_ms(5000);
 #endif
 
 #if DEBUG
-	prepare_debug_led();
 	initUSART();
 	printString("Shadow Initialized\n");
 #endif
 
-	prepare_IR_sensors();
+    prepare_debug_led();
+    prepare_ping();
+    prepare_line();
 }
 
 void loop() {
-    if (success) {
-
-        if (ref > 100) {
-            debug_led(0, 0, 1);
-        }
-
-        else {
-            debug_led(0, 1, 0);
-        }
-
-        // char c[10];
-        // utoa(ref, c, 10);
-        // printString(c);
-
-        success = 0; 
-        end = 0;
-    }
-
+    
 }
