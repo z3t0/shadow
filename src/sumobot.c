@@ -3,6 +3,18 @@
 
 #include "sumobot.h"
 
+enum STATE {
+    START,
+    START_DELAY,
+    FRONT_LINE,
+    LEFT_LINE,
+    BACK_LINE,
+    RIGHT_LINE,
+    FIND_ENEMY
+};
+
+enum STATE state = START;
+
 // On Start
 int main() {
     
@@ -11,7 +23,7 @@ int main() {
     // Enable interrupts
     sei();
 
-    debug_led(0, 0, 0);
+    debug_led(1, 1, 1);
 	while(1) {
 		loop();
 	}
@@ -33,10 +45,33 @@ void init() {
 #endif
 
     prepare_debug_led();
-    prepare_ping();
-    prepare_line();
+    // debug_led(1, 0, 0);
+    // prepare_ping();
+    // prepare_line();
+    prepare_motor();
+    OCR0B = 93;
+    OCR0A = 125;
 }
 
+int a = 1;
+
 void loop() {
-    
+    // OCR0B = a;
+    // debug_led
+    // switch(state) {
+    //     case START:
+    //         left_motor(100);
+    //         right_motor(100);
+    //         break;
+    //     case FRONT_LINE:
+    //         stop_motor();
+    //         break;
+    //     case LEFT_LINE:
+    //         stop_motor();
+    //         break;
+    //     case RIGHT_LINE:
+    //         stop_motor();
+    //         break;
+    // }
 }
+
