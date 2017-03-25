@@ -20,6 +20,7 @@
 #include "USART.h"
 #include <util/setbaud.h>
 
+
 void initUSART(void) {                                /* requires BAUD */
   UBRR0H = UBRRH_VALUE;                        /* defined in setbaud.h */
   UBRR0L = UBRRL_VALUE;

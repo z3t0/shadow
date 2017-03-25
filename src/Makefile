@@ -22,7 +22,7 @@ LIBDIR = AVR-Programming-Library
 
 PROGRAMMER_TYPE = arduino
 # extra arguments to avrdude: baud rate, chip type, -F flag, etc.
-PROGRAMMER_ARGS = -b 115200 -P /dev/tty.usbserial-DA01ONXB
+PROGRAMMER_ARGS = -b 115200 -P /dev/tty.usbmodem1411
 
 ##########------------------------------------------------------##########
 ##########                  Program Locations                   ##########

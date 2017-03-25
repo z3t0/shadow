@@ -1,0 +1,1224 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"LEF",
+				"LEFT_LINE"
+			],
+			[
+				"MTOR",
+				"MOTOR_STOP"
+			],
+			[
+				"mot",
+				"MOTOR_FWD_QUARTER"
+			],
+			[
+				"F",
+				"MOTOR_FWD_QUARTER"
+			],
+			[
+				"set",
+				"set_motor"
+			],
+			[
+				"CH",
+				"CHARGE_SLOW"
+			],
+			[
+				"MOTOR",
+				"MOTOR_FWD_FULL"
+			],
+			[
+				"MOTOR_FW",
+				"MOTOR_FWD_FULL"
+			],
+			[
+				"MOTO",
+				"MOTOR_STOP"
+			],
+			[
+				"MOT",
+				"MOTOR_STOP"
+			],
+			[
+				"timer2",
+				"timer2_counter"
+			],
+			[
+				"stop_",
+				"stop_timer"
+			],
+			[
+				"MO",
+				"MOTOR_FWD_HALF"
+			],
+			[
+				"timer",
+				"timer2_counter"
+			],
+			[
+				"DEBU",
+				"DEBUG_LED_R_BIT"
+			],
+			[
+				"DEBUGR",
+				"DEBUG_LED_R_BIT"
+			],
+			[
+				"tar",
+				"timer1_target"
+			],
+			[
+				"motor",
+				"MOTOR_REV_HALF"
+			],
+			[
+				"lef",
+				"left_motor"
+			],
+			[
+				"righ",
+				"right_motor"
+			],
+			[
+				"clear_",
+				"CLEAR_RIGHT_LINE"
+			],
+			[
+				"LINE_RI",
+				"LINE_RIGHT_PIN"
+			],
+			[
+				"CLEAR",
+				"CLEAR_LEFT_LINE"
+			],
+			[
+				"FRONT",
+				"FRONT_LINE"
+			],
+			[
+				"LRI",
+				"LINE_RIGHT_BIT"
+			],
+			[
+				"LINE",
+				"LINE_LEFT_BIT"
+			],
+			[
+				"LINE_",
+				"LINE_LEFT_BIT"
+			],
+			[
+				"RIGH",
+				"LINE_RIGHT_BIT"
+			],
+			[
+				"LEF_",
+				"LINE_LEFT_BIT"
+			],
+			[
+				"OCR",
+				"OCR0A"
+			],
+			[
+				"PINGECHO",
+				"PING_ECHO_DDR"
+			],
+			[
+				"DDRD",
+				"DDRD"
+			],
+			[
+				"PING_DD",
+				"PING_TRIG_DDR"
+			],
+			[
+				"PING",
+				"PING_TRIG_PORT"
+			],
+			[
+				"PIN",
+				"PING_TRIG_DDR"
+			],
+			[
+				"PING_TRI",
+				"PING_TRIG_PORT"
+			],
+			[
+				"TRIG",
+				"PING_TRIG_BIT"
+			],
+			[
+				"PINTRI",
+				"PING_TRIG_DRR"
+			],
+			[
+				"LEFT",
+				"LINE_LEFT_PIN"
+			],
+			[
+				"LINE_PO",
+				"LINE_BACK_PORT"
+			],
+			[
+				"LINE_BAC",
+				"LINE_BACK_DDR"
+			],
+			[
+				"PINGtr",
+				"PING_TRIG_BIT"
+			],
+			[
+				"pingtrig",
+				"PING_TRIG_BIT"
+			],
+			[
+				"pingtr",
+				"PING_PORT"
+			],
+			[
+				"PINGtrig",
+				"PING_TRIG_PORT"
+			],
+			[
+				"TIM",
+				"TIMER1_OVF_vect"
+			],
+			[
+				"init",
+				"init_timer1"
+			],
+			[
+				"puls",
+				"pulseEnd"
+			],
+			[
+				"IRC",
+				"ICR1H"
+			],
+			[
+				"print",
+				"printString"
+			],
+			[
+				"PORT",
+				"PING_PORT"
+			],
+			[
+				"PIN_",
+				"PING_INT"
+			],
+			[
+				"PING_",
+				"PING_PORT"
+			],
+			[
+				"PINGP",
+				"PING_PIN"
+			],
+			[
+				"dela",
+				"_delay_ms"
+			],
+			[
+				"de",
+				"debug_led"
+			],
+			[
+				"LINE_LEF",
+				"LINE_LEFT_DDR"
+			],
+			[
+				"DEBUG_LED_R",
+				"DEBUG_LED_R_DDR"
+			],
+			[
+				"DEBUG",
+				"DEBUG_LED_B_PORT"
+			],
+			[
+				"DEBUGg",
+				"DEBUG_LED_G_PIN"
+			],
+			[
+				"DEBUG_LDEr",
+				"DEBUG_LED_R_PIN"
+			],
+			[
+				"DEU",
+				"DEBUG_LED_PORT"
+			],
+			[
+				"off",
+				"offset1_y"
+			],
+			[
+				"offset",
+				"offset1_x"
+			],
+			[
+				"side",
+				"sidebar_width"
+			],
+			[
+				"axle",
+				"axle_width"
+			],
+			[
+				"par",
+				"part_width"
+			],
+			[
+				"arm_",
+				"arm_width"
+			],
+			[
+				"alx",
+				"axle_width"
+			],
+			[
+				"arm",
+				"arm_width"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 7293,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sumobot.c",
+			"settings":
+			{
+				"buffer_size": 1501,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sumobot.h",
+			"settings":
+			{
+				"buffer_size": 11286,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "// Tuesday 03/21/17 at 10:07AM - 5 files in 0.06 secs\n\n## TODO (7)\n1. src/sumobot.h:44    Implement motor control\n2. src/sumobot.h:91    Find an interrupt and change ddr, pin, port etc.\n3. src/sumobot.h:134   check right as well since left interrupt precedes right int\n4. src/sumobot.h:145   strategy for back\n5. src/sumobot.h:212   use ref\n6. src/sumobot.h:213   optimize\n7. src/sumobot.c:23    Start up Timer\n",
+			"settings":
+			{
+				"buffer_size": 411,
+				"line_ending": "Unix",
+				"name": "TodoReview",
+				"scratch": true
+			}
+		},
+		{
+			"file": "info.md",
+			"settings":
+			{
+				"buffer_size": 127,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "# Sumobot AVR"
+			}
+		},
+		{
+			"file": "/Users/z3t0/Documents/Processing/cell_towers/cell_towers.pyde",
+			"settings":
+			{
+				"buffer_size": 2593,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/z3t0/Documents/Processing/cell_towers/sketch.properties",
+			"settings":
+			{
+				"buffer_size": 46,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Makefile/Make.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 33.0,
+		"last_filter": "remove",
+		"selected_items":
+		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"avr",
+				"AVR: Create/Update Project"
+			],
+			[
+				"package l",
+				"Package Control: List Packages"
+			],
+			[
+				"todo",
+				"TodoReview: Open Files"
+			],
+			[
+				"diff",
+				"GitGutter: Show Diff Popup"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ycm",
+				"Ycmd: Show Error Panel"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package lis",
+				"Package Control: List Packages"
+			],
+			[
+				"packe ",
+				"Package Control: List Packages"
+			],
+			[
+				"mater",
+				"Material Theme: Activate theme"
+			],
+			[
+				"mate",
+				"Material Theme: Activate theme"
+			],
+			[
+				"make",
+				"Build With: Make"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git: add",
+				"Git: Add All"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git stage",
+				"Git: Diff Staged Files"
+			],
+			[
+				"dash",
+				"DashDoc: invoke Dash with selected word"
+			],
+			[
+				"swift",
+				"Set Syntax: Swift"
+			],
+			[
+				"syntax op",
+				"Set Syntax: OpenScad"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 172.0,
+		"history":
+		[
+			"l"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/z3t0/Documents/dev/project/sumobot/src",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/AVR-Programming-Library"
+	],
+	"file_history":
+	[
+		"/Users/z3t0/Documents/dev/project/sumobot/src/AVR-Programming-Library/USART.h",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/AVR-Programming-Library/USART.c",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/AVR-Programming-Library/README.md",
+		"/Users/z3t0/Downloads/Atmel-42735-8-bit-AVR-Microcontroller-ATmega328-328P_Datasheet.pdf",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.c",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/Makefile",
+		"/Users/z3t0/Library/Application Support/Sublime Text 3/Packages/AVR/README.md",
+		"/Users/z3t0/Downloads/NewPing/NewPing.cpp",
+		"/Users/z3t0/Downloads/NewPing/NewPing.h",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/USART.c",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/USART.h",
+		"/Users/z3t0/Downloads/AVR-Programming-master/AVR-Programming-Library/Makefile",
+		"/Users/z3t0/Downloads/AVR-Programming-master/AVR-Programming-Library/USART.c",
+		"/Users/z3t0/Downloads/AVR-Programming-master/AVR-Programming-Library/USART.h",
+		"/Users/z3t0/Documents/dev/project/sumobot/src/sumobot",
+		"/Users/z3t0/Documents/dev/engineering/catapult/parts/config.scad",
+		"/Users/z3t0/Documents/dev/engineering/catapult/parts/catapult_arm.scad",
+		"/Users/z3t0/Documents/dev/engineering/catapult/parts/tosion.scad",
+		"/Users/z3t0/Documents/dev/engineering/catapult/parts/sidebar.scad",
+		"/Users/z3t0/Documents/school/physics/catapult.scad"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"charge",
+			"set_state(CHAR",
+			"500",
+			"charge",
+			"set_state",
+			"MOTOR_REV_FULL",
+			"printString",
+			"Initialized",
+			"printString",
+			"state",
+			"STATE",
+			"state",
+			"printString",
+			":",
+			"SCAN",
+			"debug_led(",
+			"set_state(back",
+			"SPIN",
+			"state =",
+			"front",
+			"set_next",
+			");\n",
+			"stop_timer",
+			"back",
+			"timer_on",
+			"printstring",
+			"clear",
+			"debug_led",
+			"DDR",
+			"debug_led",
+			"timer1_target",
+			"timer1_counter",
+			"clear",
+			"state = ",
+			"state =",
+			"motor_stop",
+			"LINE_LEFT_BIT",
+			"(",
+			"64",
+			"PING_TRIG_PORT",
+			"{\n",
+			"PING_TRIG_PORT",
+			"PD7",
+			"PING_ECHO",
+			"pinb",
+			"pb0",
+			"PB0",
+			"!\");\n",
+			"r",
+			"pd3",
+			"portb",
+			"PORTD",
+			"PINC",
+			"DDRC",
+			"PORTC",
+			"PORTD",
+			"DDRD",
+			"BACK",
+			"LINE_L_PORT",
+			"BACK",
+			"LINE_BACK_DDR",
+			"BACK",
+			"<<",
+			">>",
+			"<<",
+			"<<1",
+			"INT",
+			"CS11",
+			"cs11",
+			"printstring",
+			"number",
+			"programmer_args",
+			"unknown",
+			"line",
+			"LINE",
+			"line",
+			"PIN",
+			"LEFT",
+			"bool",
+			"RED",
+			"R",
+			"DEBUG_LED_DDRB",
+			"DEBUG_LED_PORT",
+			"enum notification",
+			"takeRetainedValue",
+			"systemwideelement",
+			"axswift.h",
+			"class UIElement",
+			"UIElement",
+			"AXSwiftVersionNumber",
+			"!"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7293,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1378,
+								1378
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sumobot.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								834,
+								834
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 618.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sumobot.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5383,
+								5383
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"history_list_is_closing": true,
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3917.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 411,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								127,
+								127
+							]
+						],
+						"settings":
+						{
+							"line_padding_bottom": 2,
+							"line_padding_top": 2,
+							"review_args":
+							{
+								"open_files": true,
+								"open_files_only": true,
+								"settings":
+								{
+								}
+							},
+							"review_results":
+							{
+								"114,186":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 91,
+									"note": "Find an interrupt and change ddr, pin, port etc.",
+									"patt": "todo",
+									"priority": 100
+								},
+								"186,269":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 134,
+									"note": "check right as well since left interrupt precedes right int",
+									"patt": "todo",
+									"priority": 100
+								},
+								"269,310":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 145,
+									"note": "strategy for back",
+									"patt": "todo",
+									"priority": 100
+								},
+								"310,341":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 212,
+									"note": "use ref",
+									"patt": "todo",
+									"priority": 100
+								},
+								"341,373":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 213,
+									"note": "optimize",
+									"patt": "todo",
+									"priority": 100
+								},
+								"373,411":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.c",
+									"line": 23,
+									"note": "Start up Timer",
+									"patt": "todo",
+									"priority": 100
+								},
+								"67,114":
+								{
+									"file": "/Users/z3t0/Documents/dev/project/sumobot/src/sumobot.h",
+									"line": 44,
+									"note": "Implement motor control",
+									"patt": "todo",
+									"priority": 100
+								}
+							},
+							"syntax": "Packages/TodoReview/TodoReview.hidden-tmLanguage",
+							"todo_results": true,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "info.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								127,
+								127
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# Sumobot AVR",
+							"git_gutter_enabled": true,
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "sumobot.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1501,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1413,
+								1413
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"history_list_is_closing": true,
+							"syntax": "Packages/C++/C.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 451.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/z3t0/Documents/Processing/cell_towers/cell_towers.pyde",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2593,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								357,
+								357
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/z3t0/Documents/Processing/cell_towers/sketch.properties",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/JavaProperties.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sumobot.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								227,
+								227
+							]
+						],
+						"settings":
+						{
+							"git_gutter_enabled": true,
+							"history_list_is_closing": true,
+							"rulers":
+							[
+								80
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "info.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# Sumobot AVR",
+							"git_gutter_enabled": true,
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.clang-errors":
+	{
+		"height": 134.0
+	},
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "sumobot.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"make",
+				"Makefile"
+			],
+			[
+				"usra",
+				"AVR-Programming-Library/USART.c"
+			],
+			[
+				"info",
+				"info.md"
+			],
+			[
+				"rad",
+				"AVR-Programming-Library/README.md"
+			],
+			[
+				"su",
+				"sumobot.h"
+			],
+			[
+				"sub",
+				"sumobot.c"
+			],
+			[
+				"uart",
+				"AVR-Programming-Library/USART.h"
+			],
+			[
+				"",
+				"sumobot.h"
+			],
+			[
+				"sumo",
+				"sumobot.h"
+			],
+			[
+				"usar",
+				"AVR-Programming-Library/USART.c"
+			],
+			[
+				"usa",
+				"AVR-Programming-Library/USART.h"
+			],
+			[
+				"sum",
+				"sumobot.c"
+			],
+			[
+				"error",
+				"AXSwift/Error.swift"
+			],
+			[
+				"consta",
+				"AXSwift/Constants.swift"
+			],
+			[
+				"system",
+				"AXSwift/SystemWideElement.swift"
+			],
+			[
+				".h",
+				"AXSwift/AXSwift.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

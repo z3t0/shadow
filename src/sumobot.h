@@ -4,12 +4,45 @@
 #ifndef SUMOBOT_H
 #define SUMOBOT_H
 
+
+// STATE MACHINE
+enum STATE {
+    DEFAULT,
+    START,
+    START_DELAY,
+    FRONT_LINE,
+    SPIN,
+    LEFT_LINE,
+    BACK_LINE,
+    RIGHT_LINE,
+    CHARGE_SLOW
+};
+
+volatile enum STATE state = START;
+volatile enum STATE last_state = DEFAULT;
+volatile enum STATE next_state = DEFAULT;
+volatile enum STATE timer2_state = DEFAULT;
+
+void set_state(enum STATE s) {
+    last_state = state;
+    state = s;
+    stop_timer();
+}
+
+void set_next_state(enum STATE s)  {
+    next_state = s;
+}
+
+void go_next_state() {
+    set_state(next_state);
+    // printString("next state");
+}
 /******************************************************************************
-**** Configuration
-******************************************************************************/
+ **** Configuration
+ ******************************************************************************/
 /// Modifiers
 #define DEBUG 1
-#define RELEASE 0
+#define RELEASE 1
 
 /// Constants
 #define F_CPU 16000000UL
@@ -25,15 +58,15 @@
 #endif
 
 /******************************************************************************
-**** Program Flow
-******************************************************************************/
+ **** Program Flow
+ ******************************************************************************/
 // Forward Declaration
 void init();    // Run once at the beginning
 void loop();    // Run forever afterwards
 
 /******************************************************************************
-**** Motor Control
-******************************************************************************/
+ **** Motor Control
+ ******************************************************************************/
 // PINOUT: Left D5, Right D6
 // Timer 0 : OC0B
 #define MOTOR_LEFT_BIT PD5
@@ -51,16 +84,19 @@ void setRightMotor(int pwm);
 // 2000us: 125
 
 #define MOTOR_FWD_FULL 125
+#define MOTOR_FWD_HALF 109
+#define MOTOR_FWD_QUARTER 101
 #define MOTOR_STOP 93
 #define MOTOR_REV_FULL 63
+#define MOTOR_REV_QUARTER 86
+#define MOTOR_REV_HALF 78
 
 // Sets up motor outputs and timers
 void prepare_motor() {
     // TODO: Clean up
     // Start at idle
-    OCR0B = 0;
-    OCR0A = 0;
-    // OCR2A = 94;
+    OCR0B = MOTOR_STOP;
+    OCR0A = MOTOR_STOP;
 
     DDRD |= _BV(PD5);
     DDRD |= _BV(PD6);
@@ -80,24 +116,26 @@ void prepare_motor() {
 }
 
 void left_motor(uint8_t top) {
-    OCR0B = top;
+    OCR0A = top;
 }
 
 void right_motor(uint8_t top) {
-    OCR2A = top;
+    OCR0B = top;
 }
 
 void stop_motor() {
     right_motor(MOTOR_STOP);
     left_motor(MOTOR_STOP);
-    while(1) {
-        // infinity
-    }
+}
+
+void set_motor(uint8_t l, uint8_t r) {
+    right_motor(r);
+    left_motor(l);
 }
 
 /******************************************************************************
-**** Line Sensors : QRD1114 with internal pull up
-******************************************************************************/
+ **** Line Sensors : QRD1114 with internal pull up
+ ******************************************************************************/
 /// PINOUT
 // Back : D9, PCINT1
 #define LINE_BACK_BIT PB1
@@ -131,7 +169,8 @@ void prepare_line() {
 
     // Interrupts
     //      on LOW for INT0 or INT1
-    EICRA &= ~(_BV(ISC01) | _BV(ISC00) | _BV(ISC10) | _BV(ISC11));
+    // EICRA &= ~(_BV(ISC01) | _BV(ISC00) | _BV(ISC10) | _BV(ISC11));
+    EICRA &= ~(_BV(ISC00) | _BV(ISC10)); // any logic change
     EIMSK |= (_BV(INT0) | _BV(INT1));     // Turns on INT0 and INT1
 
     // //      on change for PCINT0
@@ -139,38 +178,33 @@ void prepare_line() {
     PCMSK0 |= _BV(PCINT1);  //set PCINT0 to trigger an interrupt on state change
 }
 
-/// Interruptscalled on White for Left
+// Interrupt called on White for Left
 ISR (INT0_vect) {
-    // TODO: check right as well since left interrupt precedes right int
     if(!(LINE_LEFT_PIN & _BV(LINE_LEFT_BIT)) && !(LINE_RIGHT_PIN & _BV(LINE_RIGHT_BIT))) {
         // FRONT
-        // debug_led(0, 1, 0);
-        printString("FRONT");
+        set_state(FRONT_LINE);
+        set_motor(MOTOR_REV_FULL, MOTOR_REV_FULL);
+        set_timer(1000, SPIN); // forward for 500s
 
     }
 
     else if (!(LINE_LEFT_PIN & _BV(LINE_LEFT_BIT))) {
         // LEFT
-        // debug_led(1, 0, 0);
-        printString("LEFT");
-    }
-
-    else if (LINE_LEFT_PIN & _BV(LINE_LEFT_BIT) && LINE_RIGHT_PIN & _BV(LINE_RIGHT_BIT)) {
-        // Clear Front
-        // debug_led(0, 0, 1);
-        printString("CLEAR FRONT");
-    }
-
-    else if (LINE_LEFT_PIN & _BV(LINE_LEFT_BIT)) {
-        // Clear left
-        debug_led(1, 1, 1);
-        printString("CLEAR LEFT");
+        set_state(LEFT_LINE);
+        set_motor(MOTOR_REV_FULL, MOTOR_REV_HALF);
+        set_timer(1000, SPIN); // forward for 500s
     }
 }
 
 // Interrupt called on white for right
 ISR (INT1_vect) {
-    printString("right!");
+    if(!(LINE_RIGHT_PIN & _BV(LINE_RIGHT_BIT))) {
+        set_state(RIGHT_LINE);
+
+        // set_motor(MOTOR_FWD_HALF, MOTOR_FWD_HALF);
+        set_motor(MOTOR_REV_FULL, MOTOR_REV_HALF);
+        set_timer(1000, SPIN); // forward for 500s   
+    }
 }
 
 // Interrupt called for state change on PCINT0
@@ -178,16 +212,17 @@ ISR (PCINT0_vect) {
     // TODO: strategy for back
     if (!(LINE_BACK_PIN & _BV(LINE_BACK_BIT))) {
         // Back
-    }
+        set_state(BACK_LINE);
+        // printString("back line");          
 
-    else { // Clear back
-
+        set_motor(MOTOR_FWD_FULL, MOTOR_FWD_FULL);
+        set_timer(700, SPIN); // forward for 500s
     }
 }
 
 /******************************************************************************
-**** Sonar Sensor : HC-SR04
-******************************************************************************/
+ **** Sonar Sensor : HC-SR04
+ ******************************************************************************/
 /// PINOUT : Trig D7, Echo D8
 #define PING_TRIG_BIT PD7
 #define PING_TRIG_PORT PORTD
@@ -200,7 +235,7 @@ ISR (PCINT0_vect) {
 
 #define PING_MAX_CM 100
 
-volatile uint16_t ref;
+volatile uint16_t ref = 0;
 volatile uint16_t overflow = 0;
 
 void prepare_ping() {
@@ -231,6 +266,7 @@ ISR(TIMER1_COMPA_vect)
         PING_TRIG_DDR |= _BV(PING_TRIG_BIT); //Start query pulse
     }
     TCNT1=0; //Clear TIMER1 value
+    // printString("comp");
 }
 
 ISR(TIMER1_CAPT_vect)
@@ -246,10 +282,28 @@ ISR(TIMER1_CAPT_vect)
 
     else //Response pulse ended
     {
-        // TODO: use ref
-        // TODO: optimize
         //        - overflow > 1 means > 100 cm
         ref = ((TCNT1 * (float) 0.0625) / 58 + (overflow * 70.62));
+        if (state != SPIN){
+            TCNT1 = 0; //Clear TIMER1 value
+            TCCR1B |= _BV(CS10); //Start TIMER1
+            set_state(SPIN);        
+        }
+
+        char c[10]; 
+        utoa(ref, c, 10);
+        printString(c);
+
+        if(ref < 70 && ref != 0) {
+            // FOUND:
+            // printString("found");
+            set_state(CHARGE_SLOW);
+        }
+
+        else {
+            set_state(SPIN);
+        }
+
         TIMSK1 &= ~_BV(ICIE1); // disable input capture interrupt
         TIMSK1 |= _BV(OCIE1A);  // enable compare match interrupt
 
@@ -264,8 +318,8 @@ ISR(TIMER1_OVF_vect) {
     overflow++;
 }
 /******************************************************************************
-**** Debugging
-******************************************************************************/
+ **** Debugging
+ ******************************************************************************/
 
 /// RGB DEBUG LED
 /// PINOUT
@@ -326,4 +380,67 @@ void prepare_debug_led() {
     // Start with Red LED
     debug_led(1, 0, 0);
 }
+
+void toggle_red() {
+    DEBUG_LED_R_PORT ^= _BV(DEBUG_LED_R_BIT);
+}
+
+volatile uint8_t timer2_counter;
+volatile uint8_t timer2_target;
+volatile uint8_t timer2_on = 0;
+
+// Prepares Timer 2 for counting time for the sumobot moves
+// this counts in 100 nano seconds = 0.01
+void prepare_timer() {
+    OCR2A = 157;
+
+    TCCR2A |= (1 << WGM21);
+    // Set to CTC Mode
+
+    TIMSK2 |= (1 << OCIE2A);
+    //Set interrupt on compare match
+}
+
+// delay in nanoseconds
+void set_timer(int target, enum STATE next) {
+    TCCR2B |= (_BV(CS20) | _BV(CS21) | _BV(CS22));
+    // set prescaler to 1024 and starts PWM
+    timer2_counter = 0;
+    timer2_target = target / 10;
+    timer2_state = state;
+
+
+    timer2_on = 1;
+    set_next_state(next);
+}
+
+void stop_timer() {
+    timer2_on = 0;
+    TCCR2B &= ~(_BV(CS20) | _BV(CS21) | _BV(CS22));
+}
+
+int timer2_in_progress() {
+    if ((timer2_state == state) && timer2_on) 
+        return 1;
+    else
+        return 0;
+}
+
+ISR (TIMER2_COMPA_vect)
+{
+    if (timer2_counter >= timer2_target) {
+        // HIT TOP
+        timer2_counter = 0;
+
+        go_next_state();
+        stop_timer();
+    }
+
+    else {
+        timer2_counter++;
+
+    }
+}
+
+
 #endif
